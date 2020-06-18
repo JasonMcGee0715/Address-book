@@ -1,0 +1,25 @@
+{
+  "name": "address-book",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonMcGee0715/Address-book.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JasonMcGee0715/Address-book/issues"
+  },
+  "homepage": "https://github.com/JasonMcGee0715/Address-book#readme",
+  "dependencies": {
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1",
+    "mocha": "^8.0.1",
+    "node-fetch": "^2.6.0"
+  }
+}
