@@ -4,7 +4,7 @@ let arrayOfUsers = [];
 // this function waits for the web page to be loaded, when it does it will run the code inside of it which happen to be getPosts()
 window.onload = function() {
 //   getUser()
-  getMultipleUsers()
+//   getMultipleUsers()
 
 }
 
