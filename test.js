@@ -17,8 +17,8 @@ let arrayOfUsers = [];
 // this function is going to make a fetch request to the url inside it's parameter brackets (). Then it will turn the response (data it's getting back), saved here as res. The res.json will not be saved as posts and saved into the variable, arrayOfPosts
 
 
-    const getUser = () => {
-        fetch('https://randomuser.me/api/')
+    const getUser = (fetch) => {
+        return fetch('https://randomuser.me/api/')
         .then(res => res.json())
         .then(user => user.results.map(person => {
         arrayOfUsers.push(person)
@@ -91,44 +91,72 @@ fetch('https://randomuser.me/api/?results=5')
         });
     }
 
+    const phone = (fetch) => {
+        return fetch('https://randomuser.me/api/?inc=name,picture,cell')
+        .then(res => res.json())
+        .then(user => user.results.map(person => {
+        arrayOfUsers.push(person);
+        const myUser = document.getElementById('all-users');
+        const pic = document.createElement('img');
+        pic.setAttribute("src", `${person.picture.thumbnail}`)
+        const moreInfo = document.createElement('p')
+        const li = document.createElement('li');
+        // const button = document.createElement("button")
+        const text = document.createTextNode(`${person.name.first} ${person.name.last}  ||   Cell:  ${person.cell}`)
+        myUser.appendChild(pic)
+        li.appendChild(text)
+        myUser.append(li)
+        }))
+    };
+
+
+
     if (typeof describe === 'function') {
 
-        describe('#getUser()', () => {
-            it('should make sure the URL works', () => {
-              const fakeFetch = url => {
-                assert(url == 'https://randomuser.me/api/')
-                return new Promise(function(resolve) {
-        
-                })
-              }
-              getUser(fakeFetch)
-              })
-            it('brings back one user', () => {
+    describe('#getUser()', () => {
+        it('should make sure the URL works', () => {
             const fakeFetch = url => {
-                return Promise.resolve({
-                json: () => Promise.resolve({
-                    result: [
-                    {
-                        first: 'Johnny',
-                        last: 'Johnson'
-                    }
-                    ]
-                })
-                })
+            assert(url == 'https://randomuser.me/api/')
+            return new Promise(function(resolve) {
+    
+            })
+            }
+            getUser(fakeFetch)
+            })
+        it('confirm wrong api key', () => {
+            const fakeUrl = url => {
+                assert(url == 'https://randomuser.me/api/')
+                return
+            }
+            
+            })
+        it('brings back one user', () => {
+        const fakeFetch = url => {
+            return Promise.resolve({
+            json: () => Promise.resolve({
+                result: [
+                {
+                    first: 'Johnny',
+                    last: 'Johnson'
+                }
+                ]
+            })
+            })
             }
             getUser(fakeFetch)
             .then(result => assert(result.first === 'Johnny'))
             })
             })
-        describe('#phone()', () => {
-            it('should only bring back name, picture, cell', () => {
-                const fakeFetch = url => {
-                assert(url == 'https://randomuser.me/api/?inc=name,picture,cell')
-                return new Promise(function(resolve) {
+    describe('#phone()', () => {
+        it('should only bring back name, picture, cell', () => {
+            const fakeFetch = url => {
+            assert(url == 'https://randomuser.me/api/?inc=name,picture,cell')
+            return new Promise(function(resolve) {
 
-                })
-                }
-                phone(fakeFetch)
-                })
-                })
+            })
+            }
+            phone(fakeFetch)
+            })
+        })
+        
     }
