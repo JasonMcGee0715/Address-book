@@ -20,6 +20,6 @@
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^2.2.1",
     "mocha": "^8.0.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^3.1.1"
   }
 }
